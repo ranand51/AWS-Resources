@@ -55,7 +55,7 @@ resource "aws_route_table" "public_route_table" {
     #nat_gateway_id = aws_nat_gateway.nat_gateway.id
   }
   tags = {
-    Name      = "demo_public_rtb"
+    Name      = "HybridCloud_public_rtb"
     Terraform = "true"
   }
 }
@@ -69,7 +69,7 @@ resource "aws_route_table" "private_route_table" {
     nat_gateway_id = aws_nat_gateway.nat_gateway.id
   }
   tags = {
-    Name      = "demo_private_rtb"
+    Name      = "HybridCloud_private_rtb"
     Terraform = "true"
   }
 }
@@ -93,7 +93,7 @@ resource "aws_route_table_association" "private" {
 resource "aws_internet_gateway" "internet_gateway" {
   vpc_id = aws_vpc.vpc.id
   tags = {
-    Name = "demo_igw"
+    Name = "HybridCloud_demo_igw"
   }
 }
 
@@ -102,7 +102,7 @@ resource "aws_eip" "nat_gateway_eip" {
   vpc        = true
   depends_on = [aws_internet_gateway.internet_gateway]
   tags = {
-    Name = "demo_igw_eip"
+    Name = "HybridCloud_igw_eip"
   }
 }
 
@@ -112,6 +112,6 @@ resource "aws_nat_gateway" "nat_gateway" {
   allocation_id = aws_eip.nat_gateway_eip.id
   subnet_id     = aws_subnet.public_subnets["public_subnet_1"].id
   tags = {
-    Name = "demo_nat_gateway"
+    Name = "HybridCloud_nat_gateway"
   }
 }
