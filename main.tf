@@ -13,7 +13,7 @@ resource "aws_vpc" "vpc" {
 
   tags = {
     Name        = var.vpc_name
-    Environment = "demo_environment"
+    Environment = "HybridCloud_Environment"
     Terraform   = "true"
   }
 }
@@ -93,7 +93,7 @@ resource "aws_route_table_association" "private" {
 resource "aws_internet_gateway" "internet_gateway" {
   vpc_id = aws_vpc.vpc.id
   tags = {
-    Name = "HybridCloud_demo_igw"
+    Name = "HybridCloud_igw"
   }
 }
 
